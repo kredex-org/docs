@@ -1,0 +1,66 @@
+# Installation & Setup
+
+This guide will walk you through setting up Kredex on your local machine for development and testing.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- **Node.js 18+**
+- **Rust toolchain** (Run `rustup target add wasm32-unknown-unknown`)
+- **[Stellar CLI](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup)**
+- **Freighter Wallet Extension** (Set to Stellar Testnet)
+
+## Installation
+
+1. **Clone the repositories:**
+   Kredex is split into separate repositories under the [Kredex Org](https://github.com/kredex-org):
+   ```bash
+   # Web application
+   git clone https://github.com/kredex-org/product.git
+   # Soroban smart contracts (only needed for contract development)
+   git clone https://github.com/kredex-org/contracts.git
+   cd product
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+## Environment Configuration
+
+Copy the example environment file to create your local config:
+```bash
+cp .env.example .env.local
+```
+
+You will need to populate the following critical variables:
+- **NeonDB Connection String** (`DATABASE_URL`) for Prisma ORM.
+- **Upstash Redis** (`UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`) for caching metrics and loans.
+- **Stellar Network details** (Defaults to Testnet).
+
+## Database Setup
+
+Initialize the Prisma schema and push it to your NeonDB instance:
+```bash
+npx prisma generate
+npx prisma db push
+```
+
+## Run the Application
+
+Start the Next.js development server:
+```bash
+npm run dev
+```
+The application will be available at `http://localhost:3000`.
+
+## Smart Contract Development
+
+To compile and test the Soroban smart contracts locally, use the [contracts repository](https://github.com/kredex-org/contracts):
+```bash
+git clone https://github.com/kredex-org/contracts.git
+cd contracts
+cargo test
+cargo build --target wasm32-unknown-unknown --release
+```

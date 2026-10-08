@@ -1,0 +1,42 @@
+# Architecture & Smart Contracts
+
+Kredex's architecture is a hybrid of a modern Next.js 14 frontend and decentralized Soroban smart contracts on the Stellar network.
+
+## Core Platform Architecture
+
+1. **Frontend:** Next.js (App Router), Tailwind CSS, Lucide Icons, Recharts.
+2. **Backend / API:** Next.js Server Actions and Route Handlers.
+3. **Database:** Postgres hosted on NeonDB, accessed via Prisma ORM.
+4. **Cache:** Upstash Redis for high-speed API responses and rate-limiting.
+5. **Blockchain:** Stellar Network (Testnet) using Soroban smart contracts written in Rust.
+
+## Smart Contracts
+
+Kredex relies on six primary Soroban smart contracts to handle trustless loan execution and DeFi functionality:
+
+| Contract Name | Functionality |
+| :--- | :--- |
+| **Reputation** | Tracks user credit scores natively on-chain. Updates scores dynamically based on repayment history. |
+| **Escrow** | Secures lender funds and manages collateral routing. Funds are held here until disbursement or repayment. |
+| **Lending** | Core loan logic, interest calculation, and repayment terms. Validates APR and duration. |
+| **Default Mgmt** | Handles liquidation thresholds, missed payments, and insurance payouts. |
+| **Liquidity Pool** | Manages automated pool liquidity, LP token minting, and dynamic utilization-based interest rate modeling. |
+| **Oracle Adapter** | Fetches off-chain price feeds (e.g. USDC, XLM) for undercollateralized loan health checks. |
+
+## User Transaction Flow
+
+1. **Borrower:** Completes KYC and applies for a loan on the Kredex UI.
+2. **Kredex API:** Assesses the borrower's on-chain Reputation Score via Soroban RPC.
+3. **Lender:** Browses the Marketplace and commits to fund a loan.
+4. **Soroban (Escrow):** Lender's XLM is locked in the Escrow contract.
+5. **Soroban (Disbursement):** XLM is disbursed to the Borrower's wallet.
+6. **Borrower:** Makes repayment (Principal + Interest) directly to the smart contract.
+7. **Soroban (Distribution):** Funds are released back to the Lender, and the Borrower's Reputation Score is increased!
+
+## CI/CD Workflows
+
+Our GitHub Actions pipeline (`ci.yml`) automatically handles:
+- Testing Soroban Contracts (`cargo test`).
+- Compiling WASM targets (`cargo build --target wasm32-unknown-unknown --release`).
+- Next.js type-checking and linting.
+- Automated deployment to Vercel upon pushes to the `main` branch.
