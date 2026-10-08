@@ -18,7 +18,7 @@
   },
   "homepage": "https://kredex-docs.vercel.app",
   "dependencies": {
-    "next": "^14.2.35",
+    "next": "^16.3.8",
     "next-mdx-remote": "^6.0.0",
     "nextra": "^3.3.1",
     "nextra-theme-docs": "^3.3.1",
