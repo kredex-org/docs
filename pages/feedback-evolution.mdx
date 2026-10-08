@@ -1,0 +1,33 @@
+# Feedback & Evolution
+
+We actively listen to our users! The Kredex platform has evolved significantly based on real-world testing and user feedback.
+
+## User Feedback Action Report
+
+Here is a record of how user feedback directly translated into GitHub commits and new features on the platform.
+
+| Full Name | Type of User | Specific Feedback or Suggestion | Action Taken / GitHub Commit |
+|---|---|---|---|
+| Souvik Mandal | Borrower | Improvement regarding KYC must needed and strict to prevent scams. | Added robust KYC verification flow [`4c60777`](https://github.com/thisisouvik/trustlend-mainnet/commit/4c60777) |
+| Soumen Das | Borrower | Need ui improvement and add more information, so users can easily understand. | Enhanced UI layout and info cards [`1824c2c`](https://github.com/thisisouvik/trustlend-mainnet/commit/1824c2c) |
+| Lohit Mishra | Lender | on site at lenders page its showing usdc but we are making transaction on xlm | Corrected currency display logic [`8f6e707`](https://github.com/thisisouvik/trustlend-mainnet/commit/8f6e707) |
+| Rohit Maity | Borrower | Trust Score needed to be worked the logic currently are not clear for it. | Refined on-chain reputation scoring logic [`809acaf`](https://github.com/thisisouvik/trustlend-mainnet/commit/809acaf) |
+| Aditya Jha | Borrower | In KYC system please secure it more. | Integrated strict SEP-12 KYC mock server [`4c60777`](https://github.com/thisisouvik/trustlend-mainnet/commit/4c60777) |
+| pritam mondal | Borrower | need uiux more improvement | Overhauled dashboard components [`f5a7453`](https://github.com/thisisouvik/trustlend-mainnet/commit/f5a7453) |
+| Sayan Sadhukhan | Borrower | transaction history with explorer links, real-time notifications, clearer loading | Added loading indicators, notifications, TX links [`8d245a5`](https://github.com/thisisouvik/trustlend-mainnet/commit/8d245a5) |
+| Shashi verma | Both | able to copy own wallet address | Added one-click copy to Wallet Card [`6aac61a`](https://github.com/thisisouvik/trustlend-mainnet/commit/6aac61a) |
+| Arihant Sen | Borrower | landing page is incomplete. Key elements like contact details, a footer | Built comprehensive landing page with footer/contact [`5c14b5a`](https://github.com/thisisouvik/trustlend-mainnet/commit/5c14b5a) |
+| Rizwan Moulvi | Borrower | transection verify link after transaction is not working | Fixed Stellar Explorer transaction hash links [`8d245a5`](https://github.com/thisisouvik/trustlend-mainnet/commit/8d245a5) |
+| Sandhyia Parui | Both | The numbers in dashboard are not properly updating for me check that once. | Fixed caching and redesigned Analytics Chart [`4691821`](https://github.com/thisisouvik/trustlend-mainnet/commit/4691821) |
+| Md. Kaif | Lender | I think the page is not getting refreshed after taking loan... | Implemented aggressive cache invalidation and auto-refresh [`bbd2316`](https://github.com/thisisouvik/trustlend-mainnet/commit/bbd2316) |
+| Subhajeet Saha | Both | add a documentation section for this product | Created dedicated docs and Walkthrough sidebar links [`bbd2316`](https://github.com/thisisouvik/trustlend-mainnet/commit/bbd2316) |
+| Harsh Pandey | Borrower | on the top the wallet card on clicking disconnect feature is showing bug. | Fixed redundant text and UI bugs on disconnect [`91284e9`](https://github.com/thisisouvik/trustlend-mainnet/commit/91284e9) |
+| Sk. Saif Ali | Lender | I think USDC should also be added... USDC support is suggested. | Added to Mainnet Roadmap (`Pending`) |
+
+## Future Mainnet Enhancements
+
+Based on ongoing feedback, the following features are planned for our Mainnet release:
+- **Fiat On/Off Ramps:** Integration with MoneyGram Access for seamless cash-to-crypto onboarding.
+- **Stablecoin Integration:** Defaulting loans to USDC (as requested by users) to mitigate XLM price volatility.
+- **Third-Party Identity Verification:** Upgrading from mock SEP-12 to real-world biometrics via Sumsub/Jumio.
+- **Decentralized Oracles:** Real-time interest rate adjustments based on global macro-economic data feeds via Soroban oracles.
